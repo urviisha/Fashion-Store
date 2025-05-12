@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+  <product>
+    <name>Veloura Vogue</name>
+    <price>₹7,999</price>
+    <description>Elevate your wardrobe with the Luxe Essence Blazer—a perfect blend of sophistication and style. Crafted from premium fabric, it offers a sleek fit and a modern silhouette, ideal for formal events or power dressing.</description>
+    <image>./images/img1.jpg</image>
+    <category> Women's Formal Wear</category>
+  </product>
+  <product>
+    <name>Opulent Charm Dress</name>
+    <price> ₹9,499</price>
+    <description>Step into the spotlight with the Opulent Charm Dress. Designed for elegance, it features a figure-flattering cut with luxurious detailing—perfect for evening soirées and special occasions.</description>
+    <image>./images/img2.jpg</image>
+    <category>Women's Evening Wear</category>
+  </product>
+  <product>
+    <name>Velvet Noir Coat</name>
+    <price>₹12,999</price>
+    <description>Wrap yourself in luxury with the Velvet Noir Coat. This statement piece combines warmth and elegance, featuring a plush velvet texture and a tailored fit—ideal for chilly evenings and formal outings.</description>
+    <image>./images/img3.jpg</image>
+    <category>Winter Luxury Wear</category>
+  </product>
+  <product>
+    <name> Modern Majesty Suit</name>
+    <price>₹14,999</price>
+    <description>Redefine power dressing with the Modern Majesty Suit. Designed for the modern gentleman, it offers a sleek, tailored fit and premium craftsmanship, making it perfect for business meetings and luxury events.</description>
+    <image>./images/img4.jpg</image>
+    <category>Men's Premium Suits</category>
+  </product>
+  <product>
+    <name>Sleek Luxe Trousers</name>
+    <price>₹5,499</price>
+    <description>Experience comfort and sophistication with the Sleek Luxe Trousers. Crafted from high-quality fabric, these trousers offer a perfect fit and a versatile style for both office and evening wear.</description>
+    <image>./images/img5.jpg</image>
+    <category>Men's Formal Bottoms</category>
+  </product>
+  <product>
+    <name>Urban Elegance Jacket</name>
+    <price>₹8,999</price>
+    <description>Embrace a modern edge with the Urban Elegance Jacket. Featuring a minimalist design and superior craftsmanship, it’s a versatile addition to your wardrobe—ideal for casual and semi-formal occasions.</description>
+    <image>./images/img6.jpg</image>
+    <category>Casual Luxury Outerwear</category>
+  </product>
+</products>

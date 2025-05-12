@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - Fashion Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+        <path d="M3 6h18" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg>
+      <span>Fashion Store</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+      <a href="wishlist.html" class="icon-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <div style="max-width: 64rem; margin: 2rem auto; padding: 0 1rem">
+    <h1 class="form-title">My Wishlist</h1>
+    <div id="wishlistItems" style="display: grid; gap: 1rem"></div>
+    <button class="btn-primary" onclick="proceedToPayment()">Proceed to Payment</button>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    function loadWishlist() {
+      const user = localStorage.getItem('user');
+      if (!user) {
+        window.location.href = 'signin.html';
+        return;
+      }
+
+      const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      const userEmail = JSON.parse(user).email;
+      const userItems = wishlist.filter(item => item.user === userEmail);
+      const container = document.getElementById('wishlistItems');
+
+      if (userItems.length === 0) {
+        container.innerHTML = '<p style="text-align: center">Your wishlist is empty</p>';
+        return;
+      }
+
+      container.innerHTML = userItems.map(item => `
+        <div class="product-card" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem">
+          <div>
+            <h3 class="product-name">${item.product}</h3>
+          </div>
+          <button class="btn-primary" onclick="removeFromWishlist('${item.product}')">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function removeFromWishlist(productName) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      wishlist = wishlist.filter(item => !(item.user === user.email && item.product === productName));
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      loadWishlist();
+    }
+
+    loadWishlist();
+
+    function proceedToPayment() {
+      const user = localStorage.getItem('user');
+      if (!user) {
+        alert('Please sign in to proceed to payment.');
+        return;
+      }
+
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      const userEmail = JSON.parse(user).email;
+
+      // Filter user's wishlist items
+      const userWishlist = wishlist.filter(item => item.user === userEmail);
+
+      if (userWishlist.length === 0) {
+        alert('Your wishlist is empty!');
+        return;
+      }
+
+      // Save wishlist to sessionStorage for payment page
+      sessionStorage.setItem('selectedItems', JSON.stringify(userWishlist));
+      window.location.href = 'payment.html';
+    }
+
+  </script>
+</body>
+
+</html>
